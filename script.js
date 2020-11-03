@@ -1,6 +1,7 @@
 const HOURHAND = document.querySelector("#hour");
 const MINUTEHAND = document.querySelector("#minute");
 const SECONDHAND = document.querySelector("#second");
+const BUTTON = document.querySelector("#play-pause");
 var date = new Date();
 
 var hr = date.getHours();
@@ -21,3 +22,24 @@ function runTheClock() {
   SECONDHAND.style.transform = `rotate(${secPosition}deg)`;
 }
 setInterval(runTheClock, 1000);
+const addAudio = () =>{
+  const audio = document.createElement("audio");
+  audio.setAttribute("src","tick.wav");
+  audio.setAttribute("autoplay","autoplay");
+  audio.setAttribute("loop","loop");
+  document.body.appendChild(audio);
+}
+const removeAudio = () =>{
+  const audio=document.querySelector("audio")
+  document.body.removeChild(audio);
+}
+ BUTTON.addEventListener("click",()=>{
+  if(BUTTON.innerHTML === "Play"){
+    BUTTON.innerHTML="Pause";
+    addAudio();
+  }else{
+    BUTTON.innerHTML="Play";
+    
+    removeAudio();
+  }
+ })
